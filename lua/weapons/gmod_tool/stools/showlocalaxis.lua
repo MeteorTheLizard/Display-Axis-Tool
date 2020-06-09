@@ -14,6 +14,12 @@ if CLIENT then
     language.Add("Tool.showlocalaxis.reload", "Reload: Clear display")
     language.Add("Tool.showlocalaxis.warning", "Please note: The majority of props have a weird center which is why some props may have off-center lines. This is not the tools fault.")
 
+    local me
+    hook.Add("InitPostEntity","displayaxis_meinit",function()
+        hook.Remove("InitPostEntity","displayaxis_meinit")
+        me = LocalPlayer()
+    end)
+
     surface.CreateFont("showlocalaxisFont", {
         font = system.IsWindows() and "Verdana" or "Tahoma",
         size = 75,
