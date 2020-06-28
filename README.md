@@ -2,4 +2,4 @@
 
 Scripted Tool for Garry's Mod
 
-https://steamcommunity.com/sharedfiles/itemedittext/?id=2001922791
+https://steamcommunity.com/sharedfiles/filedetails/?id=2001922791
