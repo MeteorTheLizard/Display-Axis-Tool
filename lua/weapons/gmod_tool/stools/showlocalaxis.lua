@@ -76,7 +76,7 @@ if CLIENT then
 		local color_white = Color(225,225,225)
 
 
-		hook.Add("PostDrawTranslucentRenderables",sTag,function(_,bDrawingSkybox,isDraw3DSkybox)
+		hook.Add("PreDrawEffects",sTag,function(_,bDrawingSkybox,isDraw3DSkybox)
 
 			if bDrawingSkybox or isDraw3DSkybox then return end
 
@@ -204,7 +204,7 @@ function TOOL:LeftClick(tTrace)
 				self:CreateDrawHook() -- Start drawing
 			else
 				self.tSelectedEntities = {}
-				hook.Remove("PostDrawTranslucentRenderables",sTag) -- Reset all
+				hook.Remove("PreDrawEffects",sTag) -- Reset all
 			end
 		end
 
@@ -222,8 +222,9 @@ end
 
 function TOOL:Reload() -- Reset all
 	if CLIENT then
+		surface.PlaySound("buttons/button14.wav")
 		self.tSelectedEntities = {}
-		hook.Remove("PostDrawTranslucentRenderables",sTag)
+		hook.Remove("PreDrawEffects",sTag)
 	end
 
 	return false
@@ -231,30 +232,30 @@ end
 
 
 function TOOL.BuildCPanel(CPanel)
-	CPanel:AddControl("Header", {
+	CPanel:AddControl("Header",{
 		Description = "#Tool.showlocalaxis.desc"
 	})
 
-	CPanel:AddControl("CheckBox", {
+	CPanel:AddControl("CheckBox",{
 		Label = "#Tool.showlocalaxis.toggle_one",
 		Command = "showlocalaxis_showxyz"
 	})
 
-	CPanel:AddControl("CheckBox", {
+	CPanel:AddControl("CheckBox",{
 		Label = "#Tool.showlocalaxis.toggle_two",
 		Command = "showlocalaxis_showpyr"
 	})
 
-	CPanel:AddControl("CheckBox", {
+	CPanel:AddControl("CheckBox",{
 		Label = "#Tool.showlocalaxis.toggle_three",
 		Command = "showlocalaxis_showdir"
 	})
 
-	CPanel:AddControl("Label", {
+	CPanel:AddControl("Label",{
 		Text = "#Tool.showlocalaxis.warning"
 	})
 
-	CPanel:AddControl("Label", {
-		Text = "#Tool.showlocalaxis.credits"
+	CPanel:AddControl("Label",{
+		Text = "Provided by:\n\nThe UBox team.\nhttps://ubox.meteorthelizard.com"
 	})
 end
